@@ -1,0 +1,14 @@
+﻿@model StudentInfo.Models.Course
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="rc">
+    <div class=" my-3">
+        <select asp-items="ViewBag.courses" id="CourseID" name="CourseID" class="form-control">
+            <option value="">--Select Courses--</option>
+        </select>
+    </div>
+    <div>
+        <button class="remove btn btn-danger">Remove</button>
+    </div>
+</div>

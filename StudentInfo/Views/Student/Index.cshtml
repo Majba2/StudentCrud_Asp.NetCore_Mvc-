@@ -1,0 +1,45 @@
+﻿@model IEnumerable<StudentInfo.Models.Student>
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>Students List</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Age</th>
+            <th>Date of Birth</th>
+            <th>Picture</th>
+            <th>Is Active</th>
+            <th>Courses</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.StudentName</td>
+                <td>@student.StudentAge</td>
+                <td>@student.DateOfBirth.ToShortDateString()</td>
+                <td> <img src=" @student.image" width="50px" height="50px" style="border-radius:40px" /></td>
+                <td>@(student.IsActive ? "Yes" : "No")</td>
+                <td>
+                    @foreach (var enrollment in student.Enrollments)
+                    {
+                        <span>@enrollment.Course.CourseName</span>
+
+                        <br />
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@student.StudentID" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@student.StudentID" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Add New Student</a>

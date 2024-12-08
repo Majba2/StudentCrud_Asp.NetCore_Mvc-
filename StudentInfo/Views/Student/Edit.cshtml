@@ -1,0 +1,73 @@
+﻿@model StudentInfo.Models.ViewModels.StudentVM
+
+@{
+    ViewBag.Title = "Edit Student";
+}
+
+<h2>Edit Student</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input asp-for="StudentID" type="hidden" />
+
+    <div class="form-group">
+        <label asp-for="StudentName"></label>
+        <input asp-for="StudentName" class="form-control" />
+        <span asp-validation-for="StudentName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StudentAge"></label>
+        <input asp-for="StudentAge" class="form-control" />
+        <span asp-validation-for="StudentAge" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateOfBirth"></label>
+        <input asp-for="DateOfBirth" class="form-control" type="date" />
+        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="IsActive"></label>
+        <input asp-for="IsActive" class="form-check-input" type="checkbox" />
+    </div>
+
+@*     <div class="form-group">
+        <label for="courses">Courses</label>
+        <select asp-items="ViewBag.courses" multiple class="form-control" name="courseID">
+        </select>
+    </div> *@
+
+    <div class="form-group">
+        <label asp-for="ImageFile"></label>
+        <input asp-for="ImageFile" class="form-control-file" type="file" />
+        <span asp-validation-for="ImageFile" class="text-danger"></span>
+    </div>
+    <div>
+        <div>
+            <button class="AddMore btn btn-warning">Add More</button>
+        </div>
+        <div class="con">
+            <label for="courses">Courses</label>
+          
+            @foreach (var c in Model.Enrollment)
+            {
+                <div class="rc">
+                    <div class=" my-3">
+                    
+                        <select asp-items="ViewBag.courses" id="CourseID" name="CourseID" class="form-control">
+                            <option value="@c.Course.CourseID">@c.Course.CourseName</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="remove btn btn-danger">remove</button>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+    <div class="mt-3">
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    </div>
+</form>
